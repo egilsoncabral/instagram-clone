@@ -13,6 +13,9 @@ import { Auth } from './auth.service';
 import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 import { AutenticacaoGuard } from './autenticacao-guard.service';
+import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-publicacao.component';
+import { Bd } from './bd.service';
+import { Progresso } from './progresso.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { AutenticacaoGuard } from './autenticacao-guard.service';
     LoginComponent,
     CadastroComponent,
     HomeComponent,
-    PublicacoesComponent
+    PublicacoesComponent,
+    IncluirPublicacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,7 @@ import { AutenticacaoGuard } from './autenticacao-guard.service';
     BrowserAnimationsModule, 
     ReactiveFormsModule
   ],
-  providers: [ Auth, AutenticacaoGuard ],
+  providers: [ Auth, AutenticacaoGuard, Bd, Progresso ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
