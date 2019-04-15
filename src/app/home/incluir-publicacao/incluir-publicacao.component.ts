@@ -46,13 +46,10 @@ export class IncluirPublicacaoComponent implements OnInit {
       takeUntil(continua)
     )
     .subscribe(() => {
-        console.log(this.progresso.status)
-        console.log(this.progresso.estado)
         this.progressoPublicacao = 'andamento'
         if (this.progresso.avanco === 100) {
           this.progressoPublicacao = 'concluido'
           continua.next(false)
-          console.log('concluido')
         }
       });
   }
