@@ -68,4 +68,18 @@ export class Bd{
             })
         })
     }
+
+    public atualizaPublicacao(publicacao:any):Promise<any>{
+        // A post entry.
+        var postData = {
+            titulo: publicacao.titulo,
+            comentarios: publicacao.comentarios
+        };
+
+        var updates = {};
+        updates[`publicacoes/${btoa(publicacao.email)}/${publicacao.key}`] = postData;
+
+        return firebase.database().ref().update(updates)
+        
+    }
 }

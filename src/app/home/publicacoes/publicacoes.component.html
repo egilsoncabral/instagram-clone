@@ -9,14 +9,29 @@
       
       <div class="card-body">
         <p class="card-text">
-          <strong>{{publicacao.nomeUsuario}}</strong> {{publicacao.titulo}}
+          {{publicacao.titulo}}
         </p>
 
         <hr />
+        
+        <div *ngIf="publicacao.comentarios !== undefined && publicacao.comentarios.length > 0">
+          <p class="card-text">
+            <strong>Comentários</strong> 
+          </p>
+          <hr />
+          <div *ngFor="let comentario of publicacao.comentarios">
+            <p class="card-text">
+              {{comentario}} by {{publicacao.nomeUsuario}}
+            </p>
+            <hr />
+          </div>
+        </div>
+        
         <input 
           type="text" 
           class="form-control comentario"
           placeholder="Adicione um comentário..." 
+          (keypress)="adicionaComentario(publicacao, $event)"
         />
       </div>
     </div>
