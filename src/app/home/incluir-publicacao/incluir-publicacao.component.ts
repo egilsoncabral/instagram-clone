@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Bd } from 'src/app/bd.service';
 import * as firebase from 'firebase'
@@ -12,6 +12,9 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./incluir-publicacao.component.css']
 })
 export class IncluirPublicacaoComponent implements OnInit {
+
+  @Output()
+  public atualizarTimeLine :EventEmitter<any> = new EventEmitter()
 
   public email: string
 
@@ -49,6 +52,7 @@ export class IncluirPublicacaoComponent implements OnInit {
         this.progressoPublicacao = 'andamento'
         if (this.progresso.avanco === 100) {
           this.progressoPublicacao = 'concluido'
+          this.atualizarTimeLine.emit()
           continua.next(false)
         }
       });
